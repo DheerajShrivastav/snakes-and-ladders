@@ -48,4 +48,33 @@ button {
 
 .blue {
   background-color: blue;
+
+}
+.dice {
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dice:hover {
+  background-color: #f2f2f2;
+}
+
+.dice.rolling {
+  animation: dice-roll 0.5s linear;
+}
+
+@keyframes dice-roll {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
+  100% { transform: rotate(360deg); }
 }

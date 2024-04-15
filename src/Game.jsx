@@ -54,7 +54,8 @@ function Game() {
   const [position, setPosition] = useState(0)
   const [score, setScore] = useState({ player1: 0, player2: 0 })
   const [position2, setPosition2] = useState(0)
-
+    const [rolling, setRolling] = useState(false)
+    const [dice, setDice] = useState(1)
   const snakesAndLadders = {
     16: 6, // Snake from 17 to 7
     47: 26, // Snake from 48 to 27
@@ -78,6 +79,9 @@ function Game() {
   }
 
   const rollDice = () => {
+    setRolling(true)
+    const newDice = Math.floor(Math.random() * 6) + 1
+    setDice(newDice)
     const roll = Math.floor(Math.random() * 6) + 1
     let newPosition = player === 1 ? position + roll : position2 + roll
 
@@ -105,6 +109,9 @@ function Game() {
       setPlayer(1)
       setScore({ player1: 0, player2: 0 })
     }
+    setTimeout(() => {
+      setRolling(false)
+    }, 500)
   }
 
   return (
@@ -120,6 +127,9 @@ function Game() {
       <div>
         {' '}
         Score : Player 1 - {score.player1}, Player 2 - {score.player2}{' '}
+      </div>
+      <div className={`dice ${rolling ? 'rolling' : ''}`}>
+        {dice}
       </div>
       <button onClick={rollDice}>Roll Dice</button>
     </div>
